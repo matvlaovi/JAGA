@@ -3,4 +3,7 @@
   <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-JAGA-20180111080703.mdf;Initial Catalog=aspnet-JAGA-20180111080703;Integrated Security=True" tags="SqlConnectionString">
     <parameterEntry kind="XmlFile" scope="E:\\Code\\Projects\\Just\ Another\ Guitar\ App\\Web\\JAGA\\JAGA\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
   </parameter>
+  <parameter name="jaga_dbEntities-Web.config Connection String" description="jaga_dbEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/DbModel.csdl|res://*/DbModel.ssdl|res://*/DbModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=jaga-server.database.windows.net;initial catalog=jaga_db;persist security info=True;user id=matvlaovi;password=LxYdRv5q;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="E:\\Code\\Projects\\Just\ Another\ Guitar\ App\\Web\\JAGA\\JAGA\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='jaga_dbEntities']/@connectionString" />
+  </parameter>
 </parameters>

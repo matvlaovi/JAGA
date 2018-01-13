@@ -1,20 +1,38 @@
-﻿<div class="container-fluid" style="padding: 0; margin-top: 200px;">
-    <div class="row">
+﻿<div style="padding-top: 10px;">
 
-        <form class="col-md-4 col-md-offset-4" id="form" method="post" action="api/song">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            <strong>Well done!</strong>  @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+            {
+        <div class="alert alert-danger">
+            <strong>Error!</strong> @TempData["ErrorMessage"]
+        </div>
+    }
+
+</div>
+
+
+<div class="container-fluid" style="padding: 0; margin-top: 150px; font-family: 'Playfair Display SC', serif;">
+    <div class="row">      
+        <form class="col-md-4 col-md-offset-4" id="form" method="post" action="@Url.Action("InsertSong", "Home")">
 
             <div class="form-group">
-                <label for="artist"><b>Artist:</b></label>
+                <label for="artist">Artist:</label>
                 <input type="text" class="form-control" style="max-width: 100%" id="artist" name="artist" placeholder="Song artist">
             </div>
 
             <div class="form-group">
-                <label for="title"><b>Title:</b></label>
+                <label for="title">Title:</label>
                 <input type="text" class="form-control" style="max-width: 100%" id="title" name="title" placeholder="Song title">
             </div>
 
             <div class="form-group">
-                <label for="tabs"><b>Tabs:</b></label>
+                <label for="tabs">Tabs:</label>
                 <textarea class="form-control" placeholder="Paste tabs here.." style="max-width: 100%" id="tabs" name="tabs" rows="3"></textarea>
             </div>
 
@@ -33,7 +51,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary text-center" style="width: 100%">Submit</button>
+            <button type="submit" class="btn bnt-primary text-center nav-background" style="width: 100%; border: 1px solid #191919;">Insert a New Song</button>                        
         </form>
     </div>
 </div>

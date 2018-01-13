@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="jaga_dbModelStoreContainer" CdmEntityContainer="jaga_dbEntities">
+    <EntitySetMapping Name="song">
+      <EntityTypeMapping TypeName="jaga_dbModel.song">
+        <MappingFragment StoreEntitySet="song">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="artist" ColumnName="artist" />
+          <ScalarProperty Name="difficulty" ColumnName="difficulty" />
+          <ScalarProperty Name="tabs" ColumnName="tabs" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
