@@ -82,3 +82,15 @@ hr{
     transform: rotate(-64deg);
     left: -326px;
 }
+
+@media screen and (max-width: 1640px) and (min-width: 700px) {
+    .background-image-container{
+        left: -400px;
+    }
+}
+
+@media screen and (max-width: 1375px) and (min-width: 700px) {
+    .background-image-container{
+        left: -450px;
+    }
+}
