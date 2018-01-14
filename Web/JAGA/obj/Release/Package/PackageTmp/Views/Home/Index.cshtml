@@ -1,5 +1,9 @@
-﻿<div class="background-image-container">
-    <img src="~/Content/guitar_dean.png" class="background-image"/>
+﻿<audio>
+    <source src="~/Content/songs/01%20-%20Seven%20Nation%20Army.mp3" type="audio/mpeg" />
+</audio>
+
+<div class="background-image-container">
+    <img id="guitar" src="~/Content/guitar_dean.png" class="background-image"/>
 </div>
 
 
@@ -62,3 +66,15 @@
 </div>
 
 
+<script>
+    var audio = document.getElementsByTagName("audio")[0];
+    $("#guitar").mouseenter(function () {
+      audio.currentTime = 45;
+      audio.play();
+    });
+
+    $("#guitar").mouseleave(function () {
+        audio.pause();
+        audio.currentTime = 45;
+    });
+</script>
