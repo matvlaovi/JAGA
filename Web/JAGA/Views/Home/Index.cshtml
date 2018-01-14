@@ -1,4 +1,4 @@
-﻿<audio>
+﻿<audio id="audio">
     <source src="~/Content/songs/01%20-%20Seven%20Nation%20Army.mp3" type="audio/mpeg" />
 </audio>
 
@@ -67,14 +67,22 @@
 
 
 <script>
-    var audio = document.getElementsByTagName("audio")[0];
-    $("#guitar").mouseenter(function () {
-      audio.currentTime = 45;
-      audio.play();
+    var audio = $("#audio")[0];
+    audio.currentTime = 45;
+    audio.volume = 0;
+
+    $("#guitar").mouseenter(function () {        
+        audio.play();
+
+        $('#audio').animate({
+            volume: 1.0
+        }, 1000);
+               
     });
 
     $("#guitar").mouseleave(function () {
-        audio.pause();
-        audio.currentTime = 45;
+        $('#audio').animate({
+            volume: 0.0
+        }, 500);
     });
 </script>
