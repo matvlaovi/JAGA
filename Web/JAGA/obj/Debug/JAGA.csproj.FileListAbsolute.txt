@@ -147,3 +147,4 @@ E:\Code\Projects\Just Another Guitar App\Web\JAGA\bin\Microsoft.Owin.Security.Tw
 E:\Code\Projects\Just Another Guitar App\Web\JAGA\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\Code\Projects\Just Another Guitar App\Web\JAGA\obj\Debug\JAGA.dll
 E:\Code\Projects\Just Another Guitar App\Web\JAGA\obj\Debug\JAGA.pdb
+E:\Code\Projects\Just Another Guitar App\Web\JAGA\obj\Debug\JAGA.csprojResolveAssemblyReference.cache
