@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    height: 100%;
+    overflow: hidden;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -28,10 +30,55 @@ textarea {
 }
 
 .nav-background{
-    background: linear-gradient(to right, #330000, #c50000);
+    background: linear-gradient(to right, #1a191b, #313131);
     color: #efefef;
 }
 
 hr{
     /*border-color: #ffffff26;*/
+}
+
+.submit-btn{
+    outline: none !important;
+    border: none;
+}
+
+.submit-btn:hover{
+    outline: none !important;
+    border: none;
+    background-color: black;
+    box-shadow: #929292 2px 2px 8px
+}
+
+.submit-btn:active{
+    background-color: black;
+}
+
+@keyframes slideFromTop {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.alert {
+  animation: 0.5s ease-out 0s 1 slideFromTop;
+}
+
+.form-control:focus{
+    border-color: #550000 !important;
+}
+
+.background-image{
+    height: 100%;
+    width: 1056px;
+}
+
+.background-image-container{
+    position: absolute;
+    top: 364px;
+    transform: rotate(-64deg);
+    left: -326px;
 }

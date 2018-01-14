@@ -1,16 +1,17 @@
 ﻿<!DOCTYPE html>
 <html style="height: 100%">
 <head>
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="~/favicon.ico" type="image/ico" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Just Another Guitar App</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">    
 </head>
-<body style="padding: 0; background-color: #f7f7f7; color: rgb(80, 80, 80);" class="body-image">
+<body style="padding: 0; color: rgb(37, 37, 37);" class="body-image">
     <nav class="navbar navbar-inverse bg-inverse nav-background" style="border-radius: 0; font-family: 'Josefin Sans', sans-serif; box-shadow: #333333 -6px -1px 20px 0px;">
         <span class="navbar-brand">JAGA</span>
     </nav>
@@ -20,7 +21,7 @@
 
         @RenderBody()
         
-        <footer style="position: absolute; bottom: 0; width: 98%; padding-left: 10px;">
+        <footer style="position: absolute; bottom: 0; width: 98%; padding-left: 10px; text-align: right; font-family: 'Montserrat', sans-serif;">
             <hr />
             <p>&copy; @DateTime.Now.Year - Matej Vlaović</p>
         </footer>
