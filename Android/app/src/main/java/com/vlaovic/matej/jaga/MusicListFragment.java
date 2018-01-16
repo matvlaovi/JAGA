@@ -6,6 +6,7 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +20,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -36,6 +41,8 @@ public class MusicListFragment extends Fragment {
 
     private AppDatabase db;
 
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+
     public MusicListFragment() {
         // Required empty public constructor
     }
@@ -51,6 +58,8 @@ public class MusicListFragment extends Fragment {
 
         final View view = inflater.inflate(R.layout.fragment_music_list, container, false);
 
+        mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
+
         searchView = (EditText)view.findViewById(R.id.music_search);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.music_list_recycler_view);
@@ -60,8 +69,7 @@ public class MusicListFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        db = Room.databaseBuilder(getContext(),
-                AppDatabase.class, "database-name").allowMainThreadQueries().build();
+        db = AppDatabase.getAppDatabase(getContext());
 
         searchView.addTextChangedListener(new TextWatcher() {
 
@@ -82,20 +90,56 @@ public class MusicListFragment extends Fragment {
             }
         });
 
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+             @Override
+             public void onRefresh() {
+                 // Refresh items
+                 refreshItems();
+             }
+         });
+
         prepareSongData();
 
         return view;
     }
 
-    private void prepareSongData() {
-        ArrayList<Song> songs = new ArrayList<Song>();
-        songs.add(new Song("American Pie","SAVED",1, 1));
-        songs.add(new Song("Lose Yourself","SAVED",2, 1));
-        songs.add(new Song("Throw It Up","NOT SAVED",3, 0));
-        songs.add(new Song("Bohemian Rhapsody","NOT SAVED",4, 0));
-        songs.add(new Song("I Want It All","NOT SAVED",5, 0));
 
-        db.songDao().insertSongs(songs);
+    void refreshItems() {
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
+
+        Call<List<Song>> call = apiService.getAllSongs();
+        call.enqueue(new Callback<List<Song>>() {
+            @Override
+            public void onResponse(Call<List<Song>>call, Response<List<Song>> response) {
+                List<Song> songs = response.body();
+
+                db = AppDatabase.getAppDatabase(getContext());
+                db.songDao().deleteAllSongs();
+                db.songDao().insertSongs(songs);
+
+                onItemsLoadComplete();
+            }
+
+            @Override
+            public void onFailure(Call<List<Song>>call, Throwable t) {
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
+        // Load complete
+
+    }
+
+    void onItemsLoadComplete() {
+        prepareSongData();
+        // Stop refresh animation
+        mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    private void prepareSongData() {
+
+        songList.clear();
 
         switch(saved){
             case 0:
@@ -108,6 +152,7 @@ public class MusicListFragment extends Fragment {
                 songList.addAll(db.songDao().getAll());
                 break;
         }
+
         mAdapter.notifyDataSetChanged();
     }
 

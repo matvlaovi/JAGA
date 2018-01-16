@@ -12,12 +12,17 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MusicListActivity extends AppCompatActivity {
@@ -27,7 +32,7 @@ public class MusicListActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-
+    private AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,27 @@ public class MusicListActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
+
+        Call<List<Song>> call = apiService.getAllSongs();
+        call.enqueue(new Callback<List<Song>>() {
+            @Override
+            public void onResponse(Call<List<Song>>call, Response<List<Song>> response) {
+                List<Song> songs = response.body();
+
+                db = AppDatabase.getAppDatabase(getBaseContext());
+                db.songDao().deleteAllSongs();
+                db.songDao().insertSongs(songs);
+            }
+
+            @Override
+            public void onFailure(Call<List<Song>>call, Throwable t) {
+
+            }
+        });
+
     }
 
     private void setupViewPager(ViewPager viewPager) {

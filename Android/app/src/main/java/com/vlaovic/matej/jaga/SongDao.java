@@ -1,6 +1,7 @@
 package com.vlaovic.matej.jaga;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
@@ -23,5 +24,8 @@ public interface SongDao {
     List<Song> searchAllSaved(String search);
 
     @Insert
-    public void insertSongs(ArrayList<Song> songs);
+    void insertSongs(List<Song> songs);
+
+    @Query("DELETE FROM song")
+    void deleteAllSongs();
 }

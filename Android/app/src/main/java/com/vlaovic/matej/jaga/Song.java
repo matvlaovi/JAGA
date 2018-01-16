@@ -8,65 +8,77 @@ import android.arch.persistence.room.PrimaryKey;
 public class Song {
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    @ColumnInfo(name = "localId")
+    private int LocalId;
 
-    @ColumnInfo(name = "title")
-    private String title;
+    @ColumnInfo(name = "id")
+    private int Id;
 
     @ColumnInfo(name = "artist")
-    private String artist;
+    private String Artist;
+
+    @ColumnInfo(name = "title")
+    private String Title;
+
+    @ColumnInfo(name = "tabs")
+    private String Tabs;
 
     @ColumnInfo(name = "difficulty")
-    private int difficulty;
+    private int Difficulty;
 
     @ColumnInfo(name = "saved")
-    private int saved;
+    private int Saved;
 
-    public Song(String title, String artist, int difficulty, int saved) {
-
-        this.title = title;
-        this.artist = artist;
-        this.difficulty = difficulty;
-        this.saved = saved;
+    public Song(int Id, String Artist, String Title, String Tabs, int Difficulty, int Saved) {
+        this.Id = Id;
+        this.Artist = Artist;
+        this.Title = Title;
+        this.Tabs = Tabs;
+        this.Difficulty = Difficulty;
+        this.Saved = Saved;
     }
 
     public String getTitle() {
-        return title;
+        return Title;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.Title = title;
     }
 
     public String getArtist() {
-        return artist;
+        return Artist;
     }
 
     public void setArtist(String artist) {
-        this.artist = artist;
+        this.Artist = artist;
     }
 
     public int getDifficulty() {
-        return difficulty;
+        return Difficulty;
     }
 
     public void setDifficulty(int difficulty) {
-        this.difficulty = difficulty;
+        this.Difficulty = difficulty;
     }
 
     public int getSaved() {
-        return saved;
+        return Saved;
     }
 
     public void setSaved(int saved) {
-        this.saved = saved;
+        this.Saved = saved;
     }
 
     public int getId() {
-        return id;
+        return Id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.Id = id;
     }
+
+    public int getLocalId() {return LocalId; }
+
+    public void setLocalId(int localId) {LocalId = localId; }
 }
