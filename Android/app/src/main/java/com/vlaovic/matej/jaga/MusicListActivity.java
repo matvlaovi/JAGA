@@ -32,8 +32,6 @@ public class MusicListActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    private AppDatabase db;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,35 +40,14 @@ public class MusicListActivity extends AppCompatActivity {
         mainTopToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(mainTopToolbar);
 
-        musicListToolbar = (Toolbar) findViewById(R.id.toolbar);
+        musicListToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(musicListToolbar);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
-
-        Call<List<Song>> call = apiService.getAllSongs();
-        call.enqueue(new Callback<List<Song>>() {
-            @Override
-            public void onResponse(Call<List<Song>>call, Response<List<Song>> response) {
-                List<Song> songs = response.body();
-
-                db = AppDatabase.getAppDatabase(getBaseContext());
-                db.songDao().deleteAllSongs();
-                db.songDao().insertSongs(songs);
-            }
-
-            @Override
-            public void onFailure(Call<List<Song>>call, Throwable t) {
-
-            }
-        });
-
     }
 
     private void setupViewPager(ViewPager viewPager) {

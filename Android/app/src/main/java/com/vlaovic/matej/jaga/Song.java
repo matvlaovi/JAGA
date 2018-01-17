@@ -2,9 +2,10 @@ package com.vlaovic.matej.jaga;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "song")
+@Entity(tableName = "song", indices={@Index(value="id", unique=true)})
 public class Song {
 
     @PrimaryKey(autoGenerate = true)
@@ -41,7 +42,6 @@ public class Song {
     public String getTitle() {
         return Title;
     }
-
     public void setTitle(String title) {
         this.Title = title;
     }
@@ -49,7 +49,6 @@ public class Song {
     public String getArtist() {
         return Artist;
     }
-
     public void setArtist(String artist) {
         this.Artist = artist;
     }
@@ -57,7 +56,6 @@ public class Song {
     public int getDifficulty() {
         return Difficulty;
     }
-
     public void setDifficulty(int difficulty) {
         this.Difficulty = difficulty;
     }
@@ -65,7 +63,6 @@ public class Song {
     public int getSaved() {
         return Saved;
     }
-
     public void setSaved(int saved) {
         this.Saved = saved;
     }
@@ -73,12 +70,13 @@ public class Song {
     public int getId() {
         return Id;
     }
-
     public void setId(int id) {
         this.Id = id;
     }
 
     public int getLocalId() {return LocalId; }
-
     public void setLocalId(int localId) {LocalId = localId; }
+
+    public String getTabs() { return Tabs;}
+    public void setTabs(String tabs) { Tabs = tabs;}
 }

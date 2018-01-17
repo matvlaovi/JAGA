@@ -3,6 +3,7 @@ package com.vlaovic.matej.jaga;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
 import java.util.ArrayList;
@@ -23,8 +24,8 @@ public interface SongDao {
     @Query("SELECT * FROM song WHERE (title LIKE :search OR artist LIKE :search) AND Saved = 1")
     List<Song> searchAllSaved(String search);
 
-    @Insert
-    void insertSongs(List<Song> songs);
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insertNewSongs(List<Song> songs);
 
     @Query("DELETE FROM song")
     void deleteAllSongs();

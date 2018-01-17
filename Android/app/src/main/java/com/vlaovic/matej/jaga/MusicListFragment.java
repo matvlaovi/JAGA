@@ -25,6 +25,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static java.lang.System.in;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,9 +62,9 @@ public class MusicListFragment extends Fragment {
 
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
 
-        searchView = (EditText)view.findViewById(R.id.music_search);
+        searchView = view.findViewById(R.id.music_search);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.music_list_recycler_view);
+        recyclerView = view.findViewById(R.id.music_list_recycler_view);
         mAdapter = new MusicListAdapter(songList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -94,7 +96,6 @@ public class MusicListFragment extends Fragment {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
              @Override
              public void onRefresh() {
-                 // Refresh items
                  refreshItems();
              }
          });
@@ -106,8 +107,7 @@ public class MusicListFragment extends Fragment {
 
 
     void refreshItems() {
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
         Call<List<Song>> call = apiService.getAllSongs();
         call.enqueue(new Callback<List<Song>>() {
@@ -116,8 +116,8 @@ public class MusicListFragment extends Fragment {
                 List<Song> songs = response.body();
 
                 db = AppDatabase.getAppDatabase(getContext());
-                db.songDao().deleteAllSongs();
-                db.songDao().insertSongs(songs);
+
+                db.songDao().insertNewSongs(songs);
 
                 onItemsLoadComplete();
             }
@@ -171,6 +171,7 @@ public class MusicListFragment extends Fragment {
                 songList.addAll(db.songDao().searchAll('%' + searchView.getText().toString() + '%'));
                 break;
         }
+
         mAdapter.notifyDataSetChanged();
     }
 
