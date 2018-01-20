@@ -24,6 +24,9 @@ public interface SongDao {
     @Query("SELECT * FROM song WHERE (title LIKE :search OR artist LIKE :search) AND Saved = 1")
     List<Song> searchAllSaved(String search);
 
+    @Query("SELECT * FROM song WHERE id = :id")
+    Song getSongById(Integer id);
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertNewSongs(List<Song> songs);
 

@@ -27,7 +27,6 @@ import retrofit2.Response;
 
 public class MusicListActivity extends AppCompatActivity {
 
-    private Toolbar mainTopToolbar;
     private Toolbar musicListToolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -37,10 +36,8 @@ public class MusicListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_list);
 
-        mainTopToolbar = findViewById(R.id.main_toolbar);
-        setSupportActionBar(mainTopToolbar);
-
         musicListToolbar = findViewById(R.id.toolbar);
+        musicListToolbar.setTitle("JAGA");
         setSupportActionBar(musicListToolbar);
 
         viewPager = findViewById(R.id.viewpager);
@@ -59,7 +56,7 @@ public class MusicListActivity extends AppCompatActivity {
         musicListSavedFragment.setArguments(bundleSaved);
 
         adapter.addFragment(new MusicListFragment(), "ALL");
-        adapter.addFragment(musicListSavedFragment, "SAVED");
+        adapter.addFragment(musicListSavedFragment, "FAVOURITE");
         viewPager.setAdapter(adapter);
     }
 

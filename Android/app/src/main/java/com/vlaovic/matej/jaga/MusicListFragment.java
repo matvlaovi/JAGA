@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class MusicListFragment extends Fragment {
 
     private List<Song> songList = new ArrayList<>();
     private RecyclerView recyclerView;
+    private TextView emptyResult;
     private MusicListAdapter mAdapter;
 
     private EditText searchView;
@@ -64,8 +66,10 @@ public class MusicListFragment extends Fragment {
 
         searchView = view.findViewById(R.id.music_search);
 
+        emptyResult = view.findViewById(R.id.empty_view);
+
         recyclerView = view.findViewById(R.id.music_list_recycler_view);
-        mAdapter = new MusicListAdapter(songList);
+        mAdapter = new MusicListAdapter(songList, getContext());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -153,6 +157,8 @@ public class MusicListFragment extends Fragment {
                 break;
         }
 
+        checkVisibility();
+
         mAdapter.notifyDataSetChanged();
     }
 
@@ -172,7 +178,22 @@ public class MusicListFragment extends Fragment {
                 break;
         }
 
+        checkVisibility();
+
         mAdapter.notifyDataSetChanged();
+    }
+
+    private void checkVisibility(){
+
+        if(songList.isEmpty()){
+            recyclerView.setVisibility(View.GONE);
+            emptyResult.setVisibility(View.VISIBLE);
+        }
+        else{
+            recyclerView.setVisibility(View.VISIBLE);
+            emptyResult.setVisibility(View.GONE);
+        }
+
     }
 
 
