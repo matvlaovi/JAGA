@@ -53,8 +53,12 @@
         android:id="@+id/tabsScrollView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/border_bot_top"
+        android:backgroundTint="#ffffff"
+        android:elevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/artist">
 
@@ -62,21 +66,58 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:paddingTop="10dp"
             tools:text="TEST TEST TEST TEST TEST TEST TEST" />
 
     </ScrollView>
 
-    <SeekBar
-        android:id="@+id/seekBar2"
-        android:layout_width="281dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+    <com.xw.repo.BubbleSeekBar
+        android:id="@+id/bubbleSeekBar"
+        android:layout_width="249dp"
+        android:layout_height="23dp"
+        android:layout_marginEnd="35dp"
+        app:bsb_max="30"
+
+        app:bsb_min="0"
+        app:bsb_progress="10"
+        app:bsb_second_track_color="@color/colorPrimary"
+        app:bsb_touch_to_seek="true"
+        app:bsb_track_color="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabsScrollView" />
+
+    <ImageView
+        android:id="@+id/play_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bubbleSeekBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabsScrollView"
+        app:srcCompat="@drawable/ic_play_arrow_black_24dp"
+        android:tint="@color/colorPrimary"
+        android:visibility="visible"
+        />
+
+    <ImageView
+        android:id="@+id/pause_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bubbleSeekBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabsScrollView"
+        app:srcCompat="@drawable/ic_pause_black_24dp"
+        android:tint="@color/colorPrimaryDark"
+        android:visibility="gone"
+
+        />
+
 
 </android.support.constraint.ConstraintLayout>

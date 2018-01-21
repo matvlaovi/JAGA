@@ -104,7 +104,8 @@ public class MusicListFragment extends Fragment {
              }
          });
 
-        prepareSongData();
+
+        refreshItems();
 
         return view;
     }

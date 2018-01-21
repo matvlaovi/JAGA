@@ -46,4 +46,8 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
 
+    // Bubbleseekbar
+    compile 'com.xw.repo:bubbleseekbar:3.10-lite'
+
+
 }
