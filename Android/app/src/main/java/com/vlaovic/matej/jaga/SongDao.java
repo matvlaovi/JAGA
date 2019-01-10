@@ -32,4 +32,7 @@ public interface SongDao {
 
     @Query("DELETE FROM song")
     void deleteAllSongs();
+
+    @Query("UPDATE song SET saved = :saved WHERE id = :id")
+    void updateSaved(Integer saved, Integer id);
 }

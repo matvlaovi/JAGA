@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,7 @@ public class TabControlActivity extends AppCompatActivity {
 
     private Toolbar musicListToolbar;
     private Song songData;
+    private AppDatabase db;
 
     private int interval = 10;
 
@@ -47,6 +49,9 @@ public class TabControlActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_control);
+
+
+        db = AppDatabase.getAppDatabase(getApplicationContext());
 
         songData = getIntent().getParcelableExtra("songTag");
         fillViewWithData();
@@ -94,6 +99,28 @@ public class TabControlActivity extends AppCompatActivity {
 
             }
         });
+
+
+        final ImageView favoriteFilledBtn = findViewById(R.id.favorite_filled);
+        final ImageView favoriteBorderBtn = findViewById(R.id.favorite_border);
+
+        favoriteBorderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                swapVisibility(1);
+
+                db.songDao().updateSaved(1, songData.getId());
+            }
+        });
+
+        favoriteFilledBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                swapVisibility(0);
+
+                db.songDao().updateSaved(0, songData.getId());
+            }
+        });
     }
 
     @Override
@@ -125,6 +152,9 @@ public class TabControlActivity extends AppCompatActivity {
     }
 
     public void fillViewWithData(){
+
+        songData = db.songDao().getSongById(songData.getId());
+
         TextView titleView = findViewById(R.id.title);
         TextView artistView = findViewById(R.id.artist);
         TextView tabsView = findViewById(R.id.tabs);
@@ -132,6 +162,8 @@ public class TabControlActivity extends AppCompatActivity {
         titleView.setText(songData.getTitle());
         artistView.setText(songData.getArtist());
         tabsView.setText(songData.getTabs());
+
+        swapVisibility(songData.getSaved());
     }
 
     public void swapPlayPause(){
@@ -146,10 +178,21 @@ public class TabControlActivity extends AppCompatActivity {
         else{
             pauseBtn.setVisibility(View.GONE);
             playBtn.setVisibility(View.VISIBLE);
-
-
         }
+    }
 
+    public void swapVisibility(int saved){
+        final ImageView favoriteFilledBtn = findViewById(R.id.favorite_filled);
+        final ImageView favoriteBorderBtn = findViewById(R.id.favorite_border);
+
+        if(saved == 1){
+            favoriteBorderBtn.setVisibility(View.GONE);
+            favoriteFilledBtn.setVisibility(View.VISIBLE);
+        }
+        else{
+            favoriteBorderBtn.setVisibility(View.VISIBLE);
+            favoriteFilledBtn.setVisibility(View.GONE);
+        }
     }
 
 
