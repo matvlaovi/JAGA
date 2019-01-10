@@ -110,6 +110,12 @@ public class MusicListFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshItems();
+    }
+
 
     void refreshItems() {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);

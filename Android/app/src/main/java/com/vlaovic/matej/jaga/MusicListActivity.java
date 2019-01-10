@@ -58,6 +58,23 @@ public class MusicListActivity extends AppCompatActivity {
         adapter.addFragment(new MusicListFragment(), "ALL");
         adapter.addFragment(musicListSavedFragment, "FAVOURITE");
         viewPager.setAdapter(adapter);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

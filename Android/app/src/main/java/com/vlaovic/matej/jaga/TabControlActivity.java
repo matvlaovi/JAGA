@@ -83,9 +83,8 @@ public class TabControlActivity extends AppCompatActivity {
 
         mBubbleSeekBar.setOnProgressChangedListener(new BubbleSeekBar.OnProgressChangedListener() {
             @Override
-            public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
+            public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat, boolean fromUser) {
                 interval = progress;
-
             }
 
             @Override
@@ -95,7 +94,7 @@ public class TabControlActivity extends AppCompatActivity {
             }
 
             @Override
-            public void getProgressOnFinally(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
+            public void getProgressOnFinally(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat, boolean fromUser) {
 
             }
         });
@@ -108,8 +107,8 @@ public class TabControlActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 swapVisibility(1);
-
                 db.songDao().updateSaved(1, songData.getId());
+                Toast.makeText(TabControlActivity.this, "Added to favorites!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -117,8 +116,8 @@ public class TabControlActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 swapVisibility(0);
-
                 db.songDao().updateSaved(0, songData.getId());
+                Toast.makeText(TabControlActivity.this, "Removed from favorites!", Toast.LENGTH_LONG).show();
             }
         });
     }
