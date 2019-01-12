@@ -1,11 +1,18 @@
 package com.vlaovic.matej.jaga;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +26,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xw.repo.BubbleSeekBar;
+
+import org.w3c.dom.Text;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TabControlActivity extends AppCompatActivity {
 
@@ -156,13 +168,13 @@ public class TabControlActivity extends AppCompatActivity {
 
         TextView titleView = findViewById(R.id.title);
         TextView artistView = findViewById(R.id.artist);
-        TextView tabsView = findViewById(R.id.tabs);
 
         titleView.setText(songData.getTitle());
         artistView.setText(songData.getArtist());
-        tabsView.setText(songData.getTabs());
 
         swapVisibility(songData.getSaved());
+
+        setTabsTextView(songData.getTabs());
     }
 
     public void swapPlayPause(){
@@ -192,6 +204,34 @@ public class TabControlActivity extends AppCompatActivity {
             favoriteBorderBtn.setVisibility(View.VISIBLE);
             favoriteFilledBtn.setVisibility(View.GONE);
         }
+    }
+
+    public void setTabsTextView(String text){
+        String regex = "(?<!\\S)([A-G]|Am|Em|Dm|A7|B7|D7)(?!\\S)";
+        Pattern pattern = Pattern.compile(regex);
+
+        SpannableString spannable = new SpannableString(text);
+        final Matcher matcher = pattern.matcher(text);
+
+        while (matcher.find()) {
+            int start = matcher.start();
+            int end = matcher.end();
+
+            final String chordName = matcher.group(1);
+
+            ClickableSpan clickSpan = new ClickableSpan() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(TabControlActivity.this, chordName, Toast.LENGTH_LONG).show();
+                }
+            };
+            spannable.setSpan(clickSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+
+        TextView tabsView = findViewById(R.id.tabs);
+
+        tabsView.setText(spannable, TextView.BufferType.SPANNABLE);
+        tabsView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
 
