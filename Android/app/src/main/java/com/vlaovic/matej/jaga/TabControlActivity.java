@@ -1,7 +1,9 @@
 package com.vlaovic.matej.jaga;
 
+import android.animation.ObjectAnimator;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -47,8 +49,8 @@ public class TabControlActivity extends AppCompatActivity {
         public void run() {
             ScrollView sv = findViewById(R.id.tabsScrollView);
 
-            timerHandler.postDelayed(this, interval * 1000);
-            sv.smoothScrollTo(0,sv.getScrollY() + 400);
+            timerHandler.postDelayed(this, interval*2);
+            sv.smoothScrollTo(0,sv.getScrollY() + 1);
 
             if (sv.getChildAt(0).getBottom() == (sv.getHeight() + sv.getScrollY())) {
                 swapPlayPause();
@@ -101,8 +103,7 @@ public class TabControlActivity extends AppCompatActivity {
 
             @Override
             public void getProgressOnActionUp(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
-                timerHandler.removeCallbacks(timerRunnable);
-                swapPlayPause();
+                //timerHandler.removeCallbacks(timerRunnable);
             }
 
             @Override
