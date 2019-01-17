@@ -81,7 +81,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="29dp"
-        app:bsb_max="10"
+        app:bsb_max="20"
         app:bsb_min="1"
         app:bsb_progress="5"
         app:bsb_second_track_color="@color/colorPrimary"

@@ -29,9 +29,6 @@ import retrofit2.Response;
 import static java.lang.System.in;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MusicListFragment extends Fragment {
 
     private List<Song> songList = new ArrayList<>();
@@ -88,8 +85,7 @@ public class MusicListFragment extends Fragment {
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 filterSongData();
 
