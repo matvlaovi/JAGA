@@ -57,7 +57,7 @@ public class SongListFragment extends Fragment {
             saved = bundle.getInt("saved", 0);
         }
 
-        final View view = inflater.inflate(R.layout.fragment_music_list, container, false);
+        final View view = inflater.inflate(R.layout.fragment_song_list, container, false);
 
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
 

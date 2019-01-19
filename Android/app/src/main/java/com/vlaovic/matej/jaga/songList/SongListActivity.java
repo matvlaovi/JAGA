@@ -23,7 +23,7 @@ public class SongListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_music_list);
+        setContentView(R.layout.activity_song_list);
 
         Toolbar musicListToolbar = findViewById(R.id.toolbar);
         musicListToolbar.setTitle("JAGA");

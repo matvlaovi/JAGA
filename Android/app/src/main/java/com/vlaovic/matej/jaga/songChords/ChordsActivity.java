@@ -1,5 +1,6 @@
 package com.vlaovic.matej.jaga.songChords;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,8 +16,9 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.vlaovic.matej.jaga.R;
+import com.vlaovic.matej.jaga.chord.ChordView;
+import com.vlaovic.matej.jaga.chord.ChordViewFactory;
 import com.vlaovic.matej.jaga.database.AppDatabase;
 import com.vlaovic.matej.jaga.database.Song;
 import com.xw.repo.BubbleSeekBar;
@@ -44,7 +46,7 @@ public class ChordsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tab_control);
+        setContentView(R.layout.activity_chords);
 
         db = AppDatabase.getAppDatabase(getApplicationContext());
         songData = getIntent().getParcelableExtra("songTag");
@@ -164,7 +166,8 @@ public class ChordsActivity extends AppCompatActivity {
             ClickableSpan clickSpan = new ClickableSpan() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(ChordsActivity.this, chordName, Toast.LENGTH_LONG).show();
+                    ChordView chordView = ChordViewFactory.getChordView("popup");
+                    chordView.showChord(ChordsActivity.this, chordName);
                 }
             };
             spannable.setSpan(clickSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

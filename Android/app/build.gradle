@@ -49,7 +49,4 @@ dependencies {
     // Bubbleseekbar
     implementation 'com.xw.repo:bubbleseekbar:3.19-lite'
 
-
-
-
 }
