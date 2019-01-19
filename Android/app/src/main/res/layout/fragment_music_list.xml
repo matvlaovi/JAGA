@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.vlaovic.matej.jaga.MusicListFragment">
+    tools:context="com.vlaovic.matej.jaga.songList.SongListFragment">
 
     <!-- TODO: Update blank fragment layout -->
 

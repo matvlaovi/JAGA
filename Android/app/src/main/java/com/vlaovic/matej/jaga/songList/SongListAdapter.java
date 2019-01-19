@@ -1,28 +1,28 @@
-package com.vlaovic.matej.jaga;
+package com.vlaovic.matej.jaga.songList;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.vlaovic.matej.jaga.R;
+import com.vlaovic.matej.jaga.songChords.ChordsActivity;
+import com.vlaovic.matej.jaga.database.Song;
 import java.util.List;
 
-
-public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.MyViewHolder> {
+public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.MyViewHolder> {
 
     private List<Song> songList;
     private Context context;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public TextView title, artist, difficulty;
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        TextView title, artist, difficulty;
 
-        public MyViewHolder(View view) {
+        MyViewHolder(View view) {
             super(view);
             view.setOnClickListener(this);
             title = view.findViewById(R.id.title);
@@ -34,22 +34,17 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.MyVi
         public void onClick(View view) {
             Song song = getItem(this.getAdapterPosition());
 
-            Intent intentBundle = new Intent(context, TabControlActivity.class);
+            Intent intentBundle = new Intent(context, ChordsActivity.class);
             intentBundle.putExtra("songTag", song);
 
             context.startActivity(intentBundle);
-
         }
     }
 
-
-    public MusicListAdapter(List<Song> songList, Context context) {
-
+    SongListAdapter(List<Song> songList, Context context) {
         this.songList = songList;
         this.context = context;
     }
-
-
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -71,7 +66,7 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.MyVi
         return songList.size();
     }
 
-    public Song getItem(int position) {
+    private Song getItem(int position) {
         return songList.get(position);
     }
 }

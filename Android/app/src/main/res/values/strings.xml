@@ -4,7 +4,7 @@
     <string name="settings">Settings</string>
     <string name="music_list_search">Search by artist, title..</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_tab_control">TabControlActivity</string>
+    <string name="title_activity_song_chords">ChordsActivity</string>
     <string name="no_songs_available">No songs available :/</string>
     <string name="interval_text">Scroll interval</string>
     <string name="favourite_add">Added to favourites!</string>

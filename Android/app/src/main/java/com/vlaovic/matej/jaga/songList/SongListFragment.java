@@ -1,9 +1,6 @@
-package com.vlaovic.matej.jaga;
+package com.vlaovic.matej.jaga.songList;
 
 
-import android.app.Activity;
-import android.arch.persistence.room.Room;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -17,7 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.vlaovic.matej.jaga.R;
+import com.vlaovic.matej.jaga.database.ApiClient;
+import com.vlaovic.matej.jaga.database.ApiInterface;
+import com.vlaovic.matej.jaga.database.AppDatabase;
+import com.vlaovic.matej.jaga.database.Song;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,15 +28,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static java.lang.System.in;
 
-
-public class MusicListFragment extends Fragment {
+public class SongListFragment extends Fragment {
 
     private List<Song> songList = new ArrayList<>();
     private RecyclerView recyclerView;
     private TextView emptyResult;
-    private MusicListAdapter mAdapter;
+    private SongListAdapter mAdapter;
 
     private EditText searchView;
 
@@ -44,7 +44,7 @@ public class MusicListFragment extends Fragment {
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
-    public MusicListFragment() {
+    public SongListFragment() {
         // Required empty public constructor
     }
 
@@ -66,7 +66,7 @@ public class MusicListFragment extends Fragment {
         emptyResult = view.findViewById(R.id.empty_view);
 
         recyclerView = view.findViewById(R.id.music_list_recycler_view);
-        mAdapter = new MusicListAdapter(songList, getContext());
+        mAdapter = new SongListAdapter(songList, getContext());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -77,7 +77,8 @@ public class MusicListFragment extends Fragment {
         searchView.addTextChangedListener(new TextWatcher() {
 
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+            }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start,
@@ -94,11 +95,11 @@ public class MusicListFragment extends Fragment {
 
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-             @Override
-             public void onRefresh() {
-                 refreshItems();
-             }
-         });
+            @Override
+            public void onRefresh() {
+                refreshItems();
+            }
+        });
 
 
         refreshItems();
@@ -119,7 +120,7 @@ public class MusicListFragment extends Fragment {
         Call<List<Song>> call = apiService.getAllSongs();
         call.enqueue(new Callback<List<Song>>() {
             @Override
-            public void onResponse(Call<List<Song>>call, Response<List<Song>> response) {
+            public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
                 List<Song> songs = response.body();
 
                 db = AppDatabase.getAppDatabase(getContext());
@@ -130,7 +131,7 @@ public class MusicListFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<Song>>call, Throwable t) {
+            public void onFailure(Call<List<Song>> call, Throwable t) {
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -148,7 +149,7 @@ public class MusicListFragment extends Fragment {
 
         songList.clear();
 
-        switch(saved){
+        switch (saved) {
             case 0:
                 songList.addAll(db.songDao().getAll());
                 break;
@@ -169,7 +170,7 @@ public class MusicListFragment extends Fragment {
 
         songList.clear();
 
-        switch(saved){
+        switch (saved) {
             case 0:
                 songList.addAll(db.songDao().searchAll('%' + searchView.getText().toString() + '%'));
                 break;
@@ -186,19 +187,17 @@ public class MusicListFragment extends Fragment {
         mAdapter.notifyDataSetChanged();
     }
 
-    private void checkVisibility(){
+    private void checkVisibility() {
 
-        if(songList.isEmpty()){
+        if (songList.isEmpty()) {
             recyclerView.setVisibility(View.GONE);
             emptyResult.setVisibility(View.VISIBLE);
-        }
-        else{
+        } else {
             recyclerView.setVisibility(View.VISIBLE);
             emptyResult.setVisibility(View.GONE);
         }
 
     }
-
 
 
 }

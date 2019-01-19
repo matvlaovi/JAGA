@@ -1,4 +1,4 @@
-package com.vlaovic.matej.jaga;
+package com.vlaovic.matej.jaga.database;
 
 import java.util.List;
 

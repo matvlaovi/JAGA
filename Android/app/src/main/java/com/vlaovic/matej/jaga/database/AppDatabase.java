@@ -1,4 +1,4 @@
-package com.vlaovic.matej.jaga;
+package com.vlaovic.matej.jaga.database;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;

@@ -1,4 +1,4 @@
-package com.vlaovic.matej.jaga;
+package com.vlaovic.matej.jaga.songChords;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,11 +15,15 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.vlaovic.matej.jaga.R;
+import com.vlaovic.matej.jaga.database.AppDatabase;
+import com.vlaovic.matej.jaga.database.Song;
 import com.xw.repo.BubbleSeekBar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TabControlActivity extends AppCompatActivity {
+public class ChordsActivity extends AppCompatActivity {
 
     private Song songData;
     private AppDatabase db;
@@ -89,10 +93,10 @@ public class TabControlActivity extends AppCompatActivity {
 
         switch (id){
             case R.id.action_guitar_tuner:
-                Toast.makeText(TabControlActivity.this, "štimer", Toast.LENGTH_LONG).show();
+                Toast.makeText(ChordsActivity.this, "štimer", Toast.LENGTH_LONG).show();
                 break;
             case R.id.action_settings:
-                Toast.makeText(TabControlActivity.this, "postavke", Toast.LENGTH_LONG).show();
+                Toast.makeText(ChordsActivity.this, "postavke", Toast.LENGTH_LONG).show();
                 break;
         }
 
@@ -160,7 +164,7 @@ public class TabControlActivity extends AppCompatActivity {
             ClickableSpan clickSpan = new ClickableSpan() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(TabControlActivity.this, chordName, Toast.LENGTH_LONG).show();
+                    Toast.makeText(ChordsActivity.this, chordName, Toast.LENGTH_LONG).show();
                 }
             };
             spannable.setSpan(clickSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -265,7 +269,7 @@ public class TabControlActivity extends AppCompatActivity {
             public void onClick(View view) {
                 swapFavouriteVisibility(1);
                 db.songDao().updateSaved(1, songData.getId());
-                Toast.makeText(TabControlActivity.this, R.string.favourite_add, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChordsActivity.this, R.string.favourite_add, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -274,7 +278,7 @@ public class TabControlActivity extends AppCompatActivity {
             public void onClick(View view) {
                 swapFavouriteVisibility(0);
                 db.songDao().updateSaved(0, songData.getId());
-                Toast.makeText(TabControlActivity.this, R.string.favourite_remove, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChordsActivity.this, R.string.favourite_remove, Toast.LENGTH_SHORT).show();
             }
         });
     }
