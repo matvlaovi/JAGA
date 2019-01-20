@@ -228,7 +228,7 @@ public class ChordsActivity extends AppCompatActivity {
 
                     FrameLayout root = findViewById(R.id.frameLayoutRoot);
                     FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(1, 1);
-                    params.leftMargin = (int) (x + (12* ChordsActivity.this.getResources().getDisplayMetrics().density));
+                    params.leftMargin = (int) (x + (15 * ChordsActivity.this.getResources().getDisplayMetrics().density));
                     params.topMargin  = (int)(y - (32 * ChordsActivity.this.getResources().getDisplayMetrics().density));
                     root.addView(v, params);
 
@@ -237,6 +237,7 @@ public class ChordsActivity extends AppCompatActivity {
                     chordView.showChord(ChordsActivity.this, chordName, v);
                 }
             };
+
             spannable.setSpan(clickSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
 
