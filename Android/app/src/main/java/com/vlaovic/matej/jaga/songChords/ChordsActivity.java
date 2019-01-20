@@ -1,17 +1,23 @@
 package com.vlaovic.matej.jaga.songChords;
 
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -166,8 +172,69 @@ public class ChordsActivity extends AppCompatActivity {
             ClickableSpan clickSpan = new ClickableSpan() {
                 @Override
                 public void onClick(View view) {
-                    ChordView chordView = ChordViewFactory.getChordView("popup");
-                    chordView.showChord(ChordsActivity.this, chordName);
+
+                    TextView parentTextView = (TextView) view;
+
+                    Rect parentTextViewRect = new Rect();
+
+                    // Initialize values for the computing of clickedText position
+                    SpannableString completeText = (SpannableString)(parentTextView).getText();
+                    Layout textViewLayout = parentTextView.getLayout();
+
+                    double startOffsetOfClickedText = completeText.getSpanStart(this);
+                    double endOffsetOfClickedText = completeText.getSpanEnd(this);
+                    double startXCoordinatesOfClickedText = textViewLayout.getPrimaryHorizontal((int)startOffsetOfClickedText);
+                    double endXCoordinatesOfClickedText = textViewLayout.getPrimaryHorizontal((int)endOffsetOfClickedText);
+
+
+                    // Get the rectangle of the clicked text
+                    int currentLineStartOffset = textViewLayout.getLineForOffset((int)startOffsetOfClickedText);
+                    int currentLineEndOffset = textViewLayout.getLineForOffset((int)endOffsetOfClickedText);
+                    boolean keywordIsInMultiLine = currentLineStartOffset != currentLineEndOffset;
+                    textViewLayout.getLineBounds(currentLineStartOffset, parentTextViewRect);
+
+
+                    // Update the rectangle position to his real position on screen
+                    int[] parentTextViewLocation = {0,0};
+                    parentTextView.getLocationOnScreen(parentTextViewLocation);
+
+                    double parentTextViewTopAndBottomOffset = (
+                            parentTextViewLocation[1] -
+                                    parentTextView.getScrollY() +
+                                    parentTextView.getCompoundPaddingTop()
+                    );
+                    parentTextViewRect.top += parentTextViewTopAndBottomOffset;
+                    parentTextViewRect.bottom += parentTextViewTopAndBottomOffset;
+
+                    parentTextViewRect.left += (
+                            parentTextViewLocation[0] +
+                                    startXCoordinatesOfClickedText +
+                                    parentTextView.getCompoundPaddingLeft() -
+                                    parentTextView.getScrollX()
+                    );
+                    parentTextViewRect.right = (int) (
+                            parentTextViewRect.left +
+                                    endXCoordinatesOfClickedText -
+                                    startXCoordinatesOfClickedText
+                    );
+
+                    int x = (parentTextViewRect.left + parentTextViewRect.right) / 2;
+                    int y = parentTextViewRect.bottom;
+                    if (keywordIsInMultiLine) {
+                        x = parentTextViewRect.left;
+                    }
+
+                    View v = new View(ChordsActivity.this);
+
+                    FrameLayout root = findViewById(R.id.frameLayoutRoot);
+                    FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(1, 1);
+                    params.leftMargin = (int) (x + (12* ChordsActivity.this.getResources().getDisplayMetrics().density));
+                    params.topMargin  = (int)(y - (32 * ChordsActivity.this.getResources().getDisplayMetrics().density));
+                    root.addView(v, params);
+
+                    pauseAutoScroll();
+                    ChordView chordView = ChordViewFactory.getChordView("tooltip");
+                    chordView.showChord(ChordsActivity.this, chordName, v);
                 }
             };
             spannable.setSpan(clickSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
