@@ -170,6 +170,7 @@ public class ChordsActivity extends AppCompatActivity {
             final String chordName = matcher.group(1);
 
             ClickableSpan clickSpan = new ClickableSpan() {
+
                 @Override
                 public void onClick(View view) {
 
@@ -233,7 +234,7 @@ public class ChordsActivity extends AppCompatActivity {
                     root.addView(v, params);
 
                     pauseAutoScroll();
-                    ChordView chordView = ChordViewFactory.getChordView("tooltip");
+                    ChordView chordView = ChordViewFactory.getChordView("popup");
                     chordView.showChord(ChordsActivity.this, chordName, v);
                 }
             };

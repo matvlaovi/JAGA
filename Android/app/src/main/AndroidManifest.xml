@@ -27,6 +27,11 @@
             android:label="@string/title_activity_song_chords"
             android:theme="@style/AppTheme">
         </activity>
+
+        <activity
+            android:name=".chord.PopUpChordActivity"
+            android:theme="@style/AppTheme.ChordPopupLayout" >
+        </activity>
     </application>
 
 </manifest>

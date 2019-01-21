@@ -30,8 +30,8 @@ public class TooltipChord implements ChordView {
                 .animate(new TooltipAnimation(TooltipAnimation.FADE, 400))
                 .autoAdjust(true)
                 .content(content)
-                .withTip(new Tooltip.Tip(20, 20, Color.RED, 10))
-                .into((ViewGroup) ((Activity) context).findViewById(R.id.chordsActivityRoot))
+                .withTip(new Tooltip.Tip(20, 20, R.color.colorAccent, 5))
+                .into((ViewGroup)((Activity) context).findViewById(R.id.chordsActivityRoot))
                 .show()
 
         ;

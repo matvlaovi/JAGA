@@ -64,7 +64,6 @@
         android:layout_height="0dp"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/border_bot_top"
         android:backgroundTint="#ffffff"
         app:layout_constraintBottom_toTopOf="@+id/bubbleSeekBar"
         app:layout_constraintEnd_toEndOf="parent"
