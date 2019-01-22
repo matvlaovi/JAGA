@@ -2,7 +2,6 @@ package com.vlaovic.matej.jaga.chord;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,7 @@ public class TooltipChord implements ChordView {
     public void showChord(Context context, String chordName, View view) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View content = inflater.inflate(R.layout.tooltip_chord, null);
+        View content = inflater.inflate(R.layout.tooltip_chord_view, null);
 
         ImageView chordImg = content.findViewById(R.id.chordTooltipViewImage);
         int imageSource = context.getResources().getIdentifier(chordName.toLowerCase() + "_small",

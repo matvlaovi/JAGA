@@ -1,5 +1,6 @@
 package com.vlaovic.matej.jaga.songList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.vlaovic.matej.jaga.R;
+import com.vlaovic.matej.jaga.preferences.PreferencesActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ public class SongListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_song_list);
 
         Toolbar musicListToolbar = findViewById(R.id.toolbar);
-        musicListToolbar.setTitle("JAGA");
+        musicListToolbar.setTitle(R.string.app_name);
         setSupportActionBar(musicListToolbar);
 
         ViewPager viewPager = findViewById(R.id.viewpager);
@@ -47,23 +49,6 @@ public class SongListActivity extends AppCompatActivity {
         adapter.addFragment(new SongListFragment(), "ALL");
         adapter.addFragment(musicListSavedFragment, "FAVOURITE");
         viewPager.setAdapter(adapter);
-
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -110,7 +95,8 @@ public class SongListActivity extends AppCompatActivity {
                 Toast.makeText(SongListActivity.this, "štimer", Toast.LENGTH_LONG).show();
                 break;
             case R.id.action_settings:
-                Toast.makeText(SongListActivity.this, "postavke", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, PreferencesActivity.class);
+                startActivity(intent);
                 break;
         }
 

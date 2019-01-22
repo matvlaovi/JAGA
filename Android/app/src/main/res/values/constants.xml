@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="TOOLTIP">"1"</string>
+    <string name="DIALOG">"2"</string>
+    <string name="en">"en"</string>
+    <string name="hr">"hr"</string>
+</resources>

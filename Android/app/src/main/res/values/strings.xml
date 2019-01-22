@@ -9,4 +9,8 @@
     <string name="interval_text">Scroll interval</string>
     <string name="favourite_add">Added to favourites!</string>
     <string name="favourite_remove">Removed from favourites</string>
+    <string name="tooltip">Tooltip</string>
+    <string name="dialog">Dialog window</string>
+    <string name="english">English</string>
+    <string name="croatian">Hrvatski</string>
 </resources>

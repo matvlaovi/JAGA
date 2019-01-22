@@ -2,12 +2,12 @@ package com.vlaovic.matej.jaga.chord;
 
 public class ChordViewFactory {
 
-    public static ChordView getChordView(String chordViewType){
+    public static ChordView getChordView(Integer chordViewType){
 
         switch(chordViewType) {
-            case "tooltip":
+            case ChordViewTypes.TOOLTIP:
                 return new TooltipChord();
-            case "popup":
+            case ChordViewTypes.DIALOG:
                 return new PopUpChord();
             default:
                 return null;

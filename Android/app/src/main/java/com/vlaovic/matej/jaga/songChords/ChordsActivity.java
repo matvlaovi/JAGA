@@ -1,8 +1,10 @@
 package com.vlaovic.matej.jaga.songChords;
 
-import android.graphics.Color;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
@@ -10,24 +12,24 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.vlaovic.matej.jaga.R;
+import com.vlaovic.matej.jaga.preferences.PreferencesActivity;
 import com.vlaovic.matej.jaga.chord.ChordView;
 import com.vlaovic.matej.jaga.chord.ChordViewFactory;
 import com.vlaovic.matej.jaga.database.AppDatabase;
 import com.vlaovic.matej.jaga.database.Song;
 import com.xw.repo.BubbleSeekBar;
+
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -58,9 +60,7 @@ public class ChordsActivity extends AppCompatActivity {
         songData = getIntent().getParcelableExtra("songTag");
 
         // Toolbar
-        Toolbar musicListToolbar = findViewById(R.id.toolbar);
-        musicListToolbar.setTitle("JAGA");
-        setSupportActionBar(musicListToolbar);
+        setToolbar();
 
         // ScrollView
         sv = findViewById(R.id.tabsScrollView);
@@ -99,19 +99,34 @@ public class ChordsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch (id){
+        switch (id) {
             case R.id.action_guitar_tuner:
                 Toast.makeText(ChordsActivity.this, "štimer", Toast.LENGTH_LONG).show();
                 break;
             case R.id.action_settings:
-                Toast.makeText(ChordsActivity.this, "postavke", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, PreferencesActivity.class);
+                startActivity(intent);
                 break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void fillViewWithData(){
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    private void setToolbar(){
+        Toolbar t = findViewById(R.id.toolbar);
+        t.setTitle("Chords");
+        setSupportActionBar(t);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
+    private void fillViewWithData(){
         songData = db.songDao().getSongById(songData.getId());
 
         TextView titleView = findViewById(R.id.title);
@@ -125,7 +140,7 @@ public class ChordsActivity extends AppCompatActivity {
         setTabsTextView(songData.getTabs());
     }
 
-    public void pauseAutoScroll(){
+    private void pauseAutoScroll(){
         playBtn.setVisibility(View.VISIBLE);
         pauseBtn.setVisibility(View.GONE);
 
@@ -134,10 +149,9 @@ public class ChordsActivity extends AppCompatActivity {
         if(svThread != null){
             svThread.interrupt();
         }
-
     }
 
-    public void startAutoScroll(){
+    private void startAutoScroll(){
         playBtn.setVisibility(View.GONE);
         pauseBtn.setVisibility(View.VISIBLE);
 
@@ -145,7 +159,7 @@ public class ChordsActivity extends AppCompatActivity {
         startSvScrollThread();
     }
 
-    public void swapFavouriteVisibility(int saved){
+    private void swapFavouriteVisibility(int saved){
         if(saved == 1){
             favouriteBorderBtn.setVisibility(View.GONE);
             favouriteFilledBtn.setVisibility(View.VISIBLE);
@@ -156,7 +170,7 @@ public class ChordsActivity extends AppCompatActivity {
         }
     }
 
-    public void setTabsTextView(String text){
+    private void setTabsTextView(String text){
         String regex = "(?<!\\S)([A-G]|Am|Em|Dm|A7|B7|D7)(?!\\S)";
         Pattern pattern = Pattern.compile(regex);
 
@@ -174,31 +188,21 @@ public class ChordsActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
+                    // Magically getting the X and Y location of click
                     TextView parentTextView = (TextView) view;
-
                     Rect parentTextViewRect = new Rect();
-
-                    // Initialize values for the computing of clickedText position
                     SpannableString completeText = (SpannableString)(parentTextView).getText();
                     Layout textViewLayout = parentTextView.getLayout();
-
                     double startOffsetOfClickedText = completeText.getSpanStart(this);
                     double endOffsetOfClickedText = completeText.getSpanEnd(this);
                     double startXCoordinatesOfClickedText = textViewLayout.getPrimaryHorizontal((int)startOffsetOfClickedText);
                     double endXCoordinatesOfClickedText = textViewLayout.getPrimaryHorizontal((int)endOffsetOfClickedText);
-
-
-                    // Get the rectangle of the clicked text
                     int currentLineStartOffset = textViewLayout.getLineForOffset((int)startOffsetOfClickedText);
                     int currentLineEndOffset = textViewLayout.getLineForOffset((int)endOffsetOfClickedText);
                     boolean keywordIsInMultiLine = currentLineStartOffset != currentLineEndOffset;
                     textViewLayout.getLineBounds(currentLineStartOffset, parentTextViewRect);
-
-
-                    // Update the rectangle position to his real position on screen
                     int[] parentTextViewLocation = {0,0};
                     parentTextView.getLocationOnScreen(parentTextViewLocation);
-
                     double parentTextViewTopAndBottomOffset = (
                             parentTextViewLocation[1] -
                                     parentTextView.getScrollY() +
@@ -206,7 +210,6 @@ public class ChordsActivity extends AppCompatActivity {
                     );
                     parentTextViewRect.top += parentTextViewTopAndBottomOffset;
                     parentTextViewRect.bottom += parentTextViewTopAndBottomOffset;
-
                     parentTextViewRect.left += (
                             parentTextViewLocation[0] +
                                     startXCoordinatesOfClickedText +
@@ -218,7 +221,6 @@ public class ChordsActivity extends AppCompatActivity {
                                     endXCoordinatesOfClickedText -
                                     startXCoordinatesOfClickedText
                     );
-
                     int x = (parentTextViewRect.left + parentTextViewRect.right) / 2;
                     int y = parentTextViewRect.bottom;
                     if (keywordIsInMultiLine) {
@@ -234,7 +236,11 @@ public class ChordsActivity extends AppCompatActivity {
                     root.addView(v, params);
 
                     pauseAutoScroll();
-                    ChordView chordView = ChordViewFactory.getChordView("popup");
+
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ChordsActivity.this);
+                    Integer chordViewType = Integer.parseInt(preferences.getString("chord_type", null));
+
+                    ChordView chordView = ChordViewFactory.getChordView(chordViewType);
                     chordView.showChord(ChordsActivity.this, chordName, v);
                 }
             };
@@ -248,7 +254,7 @@ public class ChordsActivity extends AppCompatActivity {
         tabsView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
-    public void startSvScrollThread(){
+    private void startSvScrollThread(){
         svThread = new Thread() {
             @Override
             public void run() {
@@ -286,7 +292,7 @@ public class ChordsActivity extends AppCompatActivity {
         svThread.start();
     }
 
-    public void setSvListeners(){
+    private void setSvListeners(){
         sv.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -300,7 +306,7 @@ public class ChordsActivity extends AppCompatActivity {
         });
     }
 
-    public void setSeekBarListeners(){
+    private void setSeekBarListeners(){
         mBubbleSeekBar.setOnProgressChangedListener(new BubbleSeekBar.OnProgressChangedListener() {
             @Override
             public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat, boolean fromUser) {
@@ -319,7 +325,7 @@ public class ChordsActivity extends AppCompatActivity {
         });
     }
 
-    public void setPlayPauseListeners(){
+    private void setPlayPauseListeners(){
         playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -335,7 +341,7 @@ public class ChordsActivity extends AppCompatActivity {
         });
     }
 
-    public void setFavouriteButtonsListeners(){
+    private void setFavouriteButtonsListeners(){
         favouriteBorderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -354,7 +360,4 @@ public class ChordsActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 }
