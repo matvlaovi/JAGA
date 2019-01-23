@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.vlaovic.matej.jaga.R;
 import com.vlaovic.matej.jaga.preferences.PreferencesActivity;
+import com.vlaovic.matej.jaga.tuner.TunerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,11 +93,12 @@ public class SongListActivity extends AppCompatActivity {
 
         switch (id) {
             case R.id.action_guitar_tuner:
-                Toast.makeText(SongListActivity.this, "štimer", Toast.LENGTH_LONG).show();
+                Intent tunerIntent = new Intent(this, TunerActivity.class);
+                startActivity(tunerIntent);
                 break;
             case R.id.action_settings:
-                Intent intent = new Intent(this, PreferencesActivity.class);
-                startActivity(intent);
+                Intent preferencesIntent = new Intent(this, PreferencesActivity.class);
+                startActivity(preferencesIntent);
                 break;
         }
 

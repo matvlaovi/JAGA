@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDarkBackground"
+    tools:context=".tuner.TunerActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintTop_toBottomOf="parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/guitar_head"
+        android:layout_width="match_parent"
+        android:layout_height="800dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"
+        app:srcCompat="@drawable/guitar_head" />
+
+    <Button
+        android:id="@+id/tune_d_4"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:textSize="20sp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginStart="10dp"
+        android:text="@string/tune_d"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guitar_head" />
+
+    <Button
+        android:id="@+id/tune_a_5"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:textSize="20sp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginStart="10dp"
+        android:text="@string/tune_a"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guitar_head" />
+
+    <Button
+        android:id="@+id/tune_e_6"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:textSize="20sp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="245dp"
+        android:layout_marginStart="10dp"
+        android:text="@string/tune_e"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guitar_head" />
+
+    <Button
+        android:id="@+id/tune_g_3"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:textSize="20sp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/tune_g"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guitar_head" />
+
+    <Button
+        android:id="@+id/tune_b_2"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:textSize="20sp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/tune_b"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guitar_head" />
+
+    <Button
+        android:id="@+id/tune_e_1"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:textSize="20sp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="245dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/tune_e"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guitar_head" />
+
+</android.support.constraint.ConstraintLayout>

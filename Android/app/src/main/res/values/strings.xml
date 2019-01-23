@@ -13,4 +13,10 @@
     <string name="dialog">Dialog window</string>
     <string name="english">English</string>
     <string name="croatian">Hrvatski</string>
+    <string name="title_activity_tuner">TunerActivity</string>
+    <string name="tune_g">G</string>
+    <string name="tune_d">D</string>
+    <string name="tune_a">A</string>
+    <string name="tune_e">E</string>
+    <string name="tune_b">B</string>
 </resources>

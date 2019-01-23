@@ -27,6 +27,7 @@ import com.vlaovic.matej.jaga.chord.ChordView;
 import com.vlaovic.matej.jaga.chord.ChordViewFactory;
 import com.vlaovic.matej.jaga.database.AppDatabase;
 import com.vlaovic.matej.jaga.database.Song;
+import com.vlaovic.matej.jaga.tuner.TunerActivity;
 import com.xw.repo.BubbleSeekBar;
 
 import java.util.Objects;
@@ -101,11 +102,12 @@ public class ChordsActivity extends AppCompatActivity {
 
         switch (id) {
             case R.id.action_guitar_tuner:
-                Toast.makeText(ChordsActivity.this, "štimer", Toast.LENGTH_LONG).show();
+                Intent tunerIntent = new Intent(this, TunerActivity.class);
+                startActivity(tunerIntent);
                 break;
             case R.id.action_settings:
-                Intent intent = new Intent(this, PreferencesActivity.class);
-                startActivity(intent);
+                Intent preferenceIntent = new Intent(this, PreferencesActivity.class);
+                startActivity(preferenceIntent);
                 break;
         }
 
