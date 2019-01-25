@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.vlaovic.matej.jaga.R;
 import com.vlaovic.matej.jaga.songChords.ChordsActivity;
 import com.vlaovic.matej.jaga.database.Song;

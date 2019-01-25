@@ -48,7 +48,7 @@ public class TunerActivity extends AppCompatActivity {
 
     private void setToolbar(){
         Toolbar t = findViewById(R.id.toolbar);
-        t.setTitle("Tuner");
+        t.setTitle(R.string.guitar_tuner);
         setSupportActionBar(t);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

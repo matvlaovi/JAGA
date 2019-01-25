@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JAGA</string>
+    <string name="guitar_tuner">Štimer</string>
+    <string name="settings">Postavke</string>
+    <string name="music_list_search">Pretraži prema naslovu, izvođaču..</string>
+    <string name="no_songs_available">Nema dostupnih pjesama</string>
+    <string name="favourite_add">Dodano među omiljene pjesme!</string>
+    <string name="favourite_remove">Uklonjeno iz omiljenih pjesama.</string>
+    <string name="tooltip">Natuknica</string>
+    <string name="dialog">Dijaloški okvir</string>
+    <string name="all">SVE</string>
+    <string name="favourite">OMILJENE</string>
+    <string name="chords">Akordi</string>
+    <string name="chord_display">Prikaz akorda</string>
+</resources>

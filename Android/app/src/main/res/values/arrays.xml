@@ -8,14 +8,4 @@
         <item>@string/TOOLTIP</item>
         <item>@string/DIALOG</item>
     </string-array>
-
-    <string-array name="languages">
-        <item>@string/english</item>
-        <item>@string/croatian</item>
-    </string-array>
-    <string-array name="languages_values">
-        <item>@string/en</item>
-        <item>@string/hr</item>
-    </string-array>
-
 </resources>

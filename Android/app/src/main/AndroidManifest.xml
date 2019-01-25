@@ -13,7 +13,6 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".tuner.TunerActivity"
-            android:label="@string/title_activity_tuner"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".preferences.PreferencesActivity" />
         <activity
@@ -27,7 +26,6 @@
         </activity>
         <activity
             android:name=".songChords.ChordsActivity"
-            android:label="@string/title_activity_song_chords"
             android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".chord.PopUpChordActivity"

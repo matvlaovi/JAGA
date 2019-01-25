@@ -16,7 +16,7 @@ public class PreferencesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_preferences);
 
         Toolbar musicListToolbar = findViewById(R.id.toolbar);
-        musicListToolbar.setTitle("Settings");
+        musicListToolbar.setTitle(R.string.settings);
         setSupportActionBar(musicListToolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

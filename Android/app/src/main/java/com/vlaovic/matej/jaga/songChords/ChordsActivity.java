@@ -122,7 +122,7 @@ public class ChordsActivity extends AppCompatActivity {
 
     private void setToolbar(){
         Toolbar t = findViewById(R.id.toolbar);
-        t.setTitle("Chords");
+        t.setTitle(R.string.chords);
         setSupportActionBar(t);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

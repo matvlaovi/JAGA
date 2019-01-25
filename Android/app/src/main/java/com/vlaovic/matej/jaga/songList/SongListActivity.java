@@ -11,15 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-
 import com.vlaovic.matej.jaga.R;
 import com.vlaovic.matej.jaga.preferences.PreferencesActivity;
 import com.vlaovic.matej.jaga.tuner.TunerActivity;
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class SongListActivity extends AppCompatActivity {
 
@@ -47,8 +43,8 @@ public class SongListActivity extends AppCompatActivity {
         SongListFragment musicListSavedFragment = new SongListFragment();
         musicListSavedFragment.setArguments(bundleSaved);
 
-        adapter.addFragment(new SongListFragment(), "ALL");
-        adapter.addFragment(musicListSavedFragment, "FAVOURITE");
+        adapter.addFragment(new SongListFragment(), getString(R.string.all));
+        adapter.addFragment(musicListSavedFragment, getString(R.string.favourite));
         viewPager.setAdapter(adapter);
     }
 

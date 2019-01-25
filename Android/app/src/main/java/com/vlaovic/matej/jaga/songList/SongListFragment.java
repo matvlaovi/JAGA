@@ -1,6 +1,5 @@
 package com.vlaovic.matej.jaga.songList;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,29 +13,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.vlaovic.matej.jaga.R;
 import com.vlaovic.matej.jaga.database.ApiClient;
 import com.vlaovic.matej.jaga.database.ApiInterface;
 import com.vlaovic.matej.jaga.database.AppDatabase;
 import com.vlaovic.matej.jaga.database.Song;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 
 public class SongListFragment extends Fragment {
 
     private List<Song> songList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private TextView emptyResult;
     private SongListAdapter mAdapter;
 
     private EditText searchView;
+    private View emptyResult;
 
     private int saved;
 
@@ -45,7 +40,7 @@ public class SongListFragment extends Fragment {
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
     public SongListFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -62,7 +57,6 @@ public class SongListFragment extends Fragment {
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
 
         searchView = view.findViewById(R.id.music_search);
-
         emptyResult = view.findViewById(R.id.empty_view);
 
         recyclerView = view.findViewById(R.id.music_list_recycler_view);
@@ -141,7 +135,6 @@ public class SongListFragment extends Fragment {
 
     void onItemsLoadComplete() {
         prepareSongData();
-        // Stop refresh animation
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
