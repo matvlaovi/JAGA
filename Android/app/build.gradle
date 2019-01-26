@@ -52,8 +52,8 @@ dependencies {
     // Tooltip
     implementation 'com.fenchtose:tooltip:0.1.6'
 
+    // Preference
     implementation 'com.android.support:preference-v7:26.1.0'
-
     implementation 'com.android.support:preference-v14:26.1.0'
 
 }

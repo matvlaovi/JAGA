@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import com.fenchtose.tooltip.Tooltip;
 import com.fenchtose.tooltip.TooltipAnimation;
 import com.vlaovic.matej.jaga.R;
@@ -29,10 +28,9 @@ public class TooltipChord implements ChordView {
                 .animate(new TooltipAnimation(TooltipAnimation.FADE, 400))
                 .autoAdjust(true)
                 .content(content)
-                .withTip(new Tooltip.Tip(20, 20, R.color.colorAccent, 5))
-                .into((ViewGroup)((Activity) context).findViewById(R.id.chordsActivityRoot))
-                .show()
+                .withTip(new Tooltip.Tip(20, 20, context.getResources().getColor(R.color.colorAccent),5))
+                .into((ViewGroup) ((Activity) context).findViewById(R.id.chordsActivityRoot))
+                .show();
 
-        ;
     }
 }
