@@ -8,7 +8,7 @@ public class ChordViewFactory {
             case ChordViewTypes.TOOLTIP:
                 return new TooltipChord();
             case ChordViewTypes.DIALOG:
-                return new PopUpChord();
+                return new DialogChord();
             default:
                 return null;
         }
