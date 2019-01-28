@@ -5,12 +5,13 @@
     <string name="settings">Postavke</string>
     <string name="music_list_search">Pretraži prema naslovu, izvođaču..</string>
     <string name="no_songs_available">Nema dostupnih pjesama</string>
-    <string name="favourite_add">Dodano među omiljene pjesme!</string>
-    <string name="favourite_remove">Uklonjeno iz omiljenih pjesama.</string>
+    <string name="favourite_add">Pjesma dodana u omiljene</string>
+    <string name="favourite_remove">Pjesma uklonjena iz omiljenih</string>
     <string name="tooltip">Natuknica</string>
     <string name="dialog">Dijaloški okvir</string>
     <string name="all">SVE</string>
     <string name="favourite">OMILJENE</string>
     <string name="chords">Akordi</string>
     <string name="chord_display">Prikaz akorda</string>
+    <string name="undo">Poništi</string>
 </resources>

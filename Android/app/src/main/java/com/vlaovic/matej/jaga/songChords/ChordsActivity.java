@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
@@ -20,16 +21,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.vlaovic.matej.jaga.R;
-import com.vlaovic.matej.jaga.preferences.PreferencesActivity;
 import com.vlaovic.matej.jaga.chord.ChordView;
 import com.vlaovic.matej.jaga.chord.ChordViewFactory;
 import com.vlaovic.matej.jaga.database.AppDatabase;
 import com.vlaovic.matej.jaga.database.Song;
+import com.vlaovic.matej.jaga.preferences.PreferencesActivity;
 import com.vlaovic.matej.jaga.tuner.TunerActivity;
 import com.xw.repo.BubbleSeekBar;
-
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -349,7 +348,17 @@ public class ChordsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 swapFavouriteVisibility(1);
                 db.songDao().updateSaved(1, songData.getId());
-                Toast.makeText(ChordsActivity.this, R.string.favourite_add, Toast.LENGTH_SHORT).show();
+
+                Snackbar
+                        .make(view, R.string.favourite_add, Snackbar.LENGTH_SHORT)
+                        .setAction(R.string.undo, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                swapFavouriteVisibility(0);
+                                db.songDao().updateSaved(0, songData.getId());
+                            }
+                        })
+                        .show();
             }
         });
 
@@ -358,7 +367,17 @@ public class ChordsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 swapFavouriteVisibility(0);
                 db.songDao().updateSaved(0, songData.getId());
-                Toast.makeText(ChordsActivity.this, R.string.favourite_remove, Toast.LENGTH_SHORT).show();
+
+                Snackbar
+                        .make(view, R.string.favourite_remove, Snackbar.LENGTH_SHORT)
+                        .setAction(R.string.undo, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                swapFavouriteVisibility(1);
+                                db.songDao().updateSaved(1, songData.getId());
+                            }
+                        })
+                        .show();
             }
         });
     }
