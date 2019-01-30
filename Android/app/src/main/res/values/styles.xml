@@ -1,29 +1,15 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <!-- Base application theme -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
 
         <item name="preferenceTheme">
             @style/PreferenceThemeOverlay.v14.Material
         </item>
-    </style>
-
-    <style name="HeaderBar">
-        <item name="android:background">#1b1b21</item>
-    </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="AppTheme.ChordPopupLayout">
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowCloseOnTouchOutside">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

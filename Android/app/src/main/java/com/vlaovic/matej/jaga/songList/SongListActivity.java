@@ -1,6 +1,8 @@
 package com.vlaovic.matej.jaga.songList;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.TextView;
+
 import com.vlaovic.matej.jaga.R;
 import com.vlaovic.matej.jaga.preferences.PreferencesActivity;
 import com.vlaovic.matej.jaga.tuner.TunerActivity;
@@ -24,8 +30,20 @@ public class SongListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_list);
 
-        Toolbar musicListToolbar = findViewById(R.id.toolbar);
+        final Toolbar musicListToolbar = findViewById(R.id.toolbar);
         musicListToolbar.setTitle(R.string.app_name);
+
+        musicListToolbar.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                View view = musicListToolbar.getChildAt(0);
+                TextView title = (TextView) view;
+                Typeface font = Typeface.createFromAsset(getAssets(), "fonts/josefin_sans_regular.ttf");
+                title.setTypeface(font);
+                musicListToolbar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
+
         setSupportActionBar(musicListToolbar);
 
         ViewPager viewPager = findViewById(R.id.viewpager);

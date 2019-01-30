@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/chordsActivityRoot"
     android:layout_width="match_parent"
+    android:background="@color/colorDarkBackground"
     android:layout_height="match_parent"
     tools:context="com.vlaovic.matej.jaga.songList.SongListActivity">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/frameLayoutRoot"
         android:layout_width="match_parent"
@@ -17,18 +20,22 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        app:layout_constraintTop_toBottomOf="parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        app:layout_constraintTop_toBottomOf="parent"
+        app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            android:layout_height="?attr/actionBarSize"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorSecondaryWhite" />
     </android.support.design.widget.AppBarLayout>
 
     <TextView
@@ -37,6 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:textColor="@color/colorPrimaryWhite"
         android:layout_marginTop="25dp"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,6 +59,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
+        android:textColor="@color/colorPrimaryWhite"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +73,6 @@
         android:layout_height="0dp"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="32dp"
-        android:backgroundTint="#ffffff"
         app:layout_constraintBottom_toTopOf="@+id/bubbleSeekBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,16 +83,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:fontFamily="@font/inconsolata"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimaryWhite"
             android:paddingTop="10dp"
-            tools:text="TEST TEST TEST TEST TEST TEST TEST"
-            android:singleLine="false"/>
-
+            tools:text="TEST TEST TEST TEST TEST TEST TEST"/>
     </ScrollView>
 
     <com.xw.repo.BubbleSeekBar
         android:id="@+id/bubbleSeekBar"
         android:layout_width="200dp"
-
+        app:bsb_track_size="1dp"
+        app:bsb_bubble_text_color="@color/colorPrimary"
         android:layout_height="16dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -92,19 +102,21 @@
         app:bsb_max="20"
         app:bsb_min="1"
         app:bsb_progress="5"
-        app:bsb_second_track_color="@color/colorPrimary"
+        app:bsb_second_track_color="@color/colorPrimaryWhite"
         app:bsb_touch_to_seek="true"
-        app:bsb_track_color="@color/colorAccent"
+        app:bsb_track_color="@color/colorLightBlack"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <ImageView
         android:id="@+id/play_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/rounded_shape"
         app:srcCompat="@drawable/ic_play_arrow_black_24dp"
-        android:tint="@color/colorPrimary"
+        android:tint="@color/colorPrimaryWhite"
         android:visibility="visible"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
@@ -115,10 +127,11 @@
 
     <ImageView
         android:id="@+id/pause_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/rounded_shape"
         app:srcCompat="@drawable/ic_pause_black_24dp"
-        android:tint="@color/colorPrimaryDark"
+        android:tint="@color/colorPrimaryWhite"
         android:visibility="gone"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
@@ -143,7 +156,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:tint="@color/colorAccent"
+        android:tint="@color/colorPrimaryWhite"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"

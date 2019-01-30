@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:textColor="@color/colorPrimaryWhite"
+        android:textColorHint="@color/colorPrimaryWhite"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/music_list_search"

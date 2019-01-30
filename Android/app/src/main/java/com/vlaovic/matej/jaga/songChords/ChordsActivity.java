@@ -2,6 +2,7 @@ package com.vlaovic.matej.jaga.songChords;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -11,8 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.text.Layout;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -172,20 +176,20 @@ public class ChordsActivity extends AppCompatActivity {
     }
 
     private void setTabsTextView(String text){
-        String regex = "(?<!\\S)([A-G]|Am|Em|Dm|A7|B7|D7)(?!\\S)";
-        Pattern pattern = Pattern.compile(regex);
 
         SpannableString spannable = new SpannableString(text);
-        final Matcher matcher = pattern.matcher(text);
 
-        while (matcher.find()) {
-            int start = matcher.start();
-            int end = matcher.end();
+        String chordRegex = "(?<!\\S)([A-G]|Am|Em|Dm|A7|B7|D7)(?!\\S)";
+        Pattern chordPattern = Pattern.compile(chordRegex);
+        final Matcher chordMatcher = chordPattern.matcher(text);
 
-            final String chordName = matcher.group(1);
+        while (chordMatcher.find()) {
+            int start = chordMatcher.start();
+            int end = chordMatcher.end();
+
+            final String chordName = chordMatcher.group(1);
 
             ClickableSpan clickSpan = new ClickableSpan() {
-
                 @Override
                 public void onClick(View view) {
 
@@ -232,8 +236,8 @@ public class ChordsActivity extends AppCompatActivity {
 
                     FrameLayout root = findViewById(R.id.frameLayoutRoot);
                     FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(1, 1);
-                    params.leftMargin = (int) (x + (15 * ChordsActivity.this.getResources().getDisplayMetrics().density));
-                    params.topMargin  = (int)(y - (32 * ChordsActivity.this.getResources().getDisplayMetrics().density));
+                    params.leftMargin = (int) (x + (0 * ChordsActivity.this.getResources().getDisplayMetrics().density));
+                    params.topMargin  = (int)(y - (40 * ChordsActivity.this.getResources().getDisplayMetrics().density));
                     root.addView(v, params);
 
                     pauseAutoScroll();
@@ -244,13 +248,31 @@ public class ChordsActivity extends AppCompatActivity {
                     ChordView chordView = ChordViewFactory.getChordView(chordViewType);
                     chordView.showChord(ChordsActivity.this, chordName, v);
                 }
+
+                @Override
+                public void updateDrawState(TextPaint ds) {
+                    super.updateDrawState(ds);
+                    ds.setUnderlineText(false);
+                }
             };
 
             spannable.setSpan(clickSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannable.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPureWhite)), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+
+        String bracketsRegex = "\\[(.*?)]";
+        Pattern bracketsPattern = Pattern.compile(bracketsRegex);
+        final Matcher bracketsMatcher = bracketsPattern.matcher(text);
+
+        while (bracketsMatcher.find()) {
+            int start = bracketsMatcher.start();
+            int end = bracketsMatcher.end();
+
+            spannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorLightBlue)), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
 
         TextView tabsView = findViewById(R.id.tabs);
-
         tabsView.setText(spannable, TextView.BufferType.SPANNABLE);
         tabsView.setMovementMethod(LinkMovementMethod.getInstance());
     }

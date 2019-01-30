@@ -30,10 +30,10 @@ public class DialogChordFragment extends DialogFragment {
 
         TextView title = new TextView(getActivity().getBaseContext());
         title.setText(chordName);
-        title.setBackgroundColor(getResources().getColor(R.color.colorDarkBackground));
+        title.setBackgroundColor(getResources().getColor(R.color.colorSecondaryWhite));
         title.setPadding(10, 30, 10, 30);
         title.setGravity(Gravity.CENTER);
-        title.setTextColor(getResources().getColor(R.color.colorPrimaryWhite));
+        title.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
         title.setTextSize(20);
 
         builder

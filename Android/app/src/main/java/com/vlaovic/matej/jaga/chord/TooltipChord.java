@@ -24,11 +24,11 @@ public class TooltipChord implements ChordView {
         chordImg.setImageResource(imageSource);
 
         new Tooltip.Builder(context)
-                .anchor(view, Tooltip.RIGHT)
+                .anchor(view, Tooltip.TOP)
                 .animate(new TooltipAnimation(TooltipAnimation.FADE, 400))
                 .autoAdjust(true)
                 .content(content)
-                .withTip(new Tooltip.Tip(20, 20, context.getResources().getColor(R.color.colorAccent),5))
+                .withTip(new Tooltip.Tip(25, 25, context.getResources().getColor(R.color.colorAccent),5))
                 .into((ViewGroup) ((Activity) context).findViewById(R.id.chordsActivityRoot))
                 .show();
 
