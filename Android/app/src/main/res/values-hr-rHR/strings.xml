@@ -3,7 +3,7 @@
     <string name="app_name">JAGA</string>
     <string name="guitar_tuner">Štimer</string>
     <string name="settings">Postavke</string>
-    <string name="music_list_search">Pretraži prema naslovu, izvođaču..</string>
+    <string name="music_list_search">Pretraži prema naslovu, izvođaču...</string>
     <string name="no_songs_available">Nema dostupnih pjesama</string>
     <string name="favourite_add">Akordi dodani u omiljene</string>
     <string name="favourite_remove">Pjesma uklonjena iz omiljenih</string>

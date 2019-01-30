@@ -18,6 +18,7 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             app:theme="@style/ThemeOverlay.AppCompat.Dark"
+            app:contentInsetStart="25dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"/>
@@ -27,6 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabGravity="fill"
+            app:tabIndicatorColor="@color/colorPureWhite"
+            app:tabIndicatorHeight="0.5dp"
             app:tabMode="fixed" />
     </android.support.design.widget.AppBarLayout>
 
