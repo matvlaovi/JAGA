@@ -3,10 +3,16 @@ package com.vlaovic.matej.jaga.chord;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,16 +36,36 @@ public class DialogChordFragment extends DialogFragment {
 
         TextView title = new TextView(getActivity().getBaseContext());
         title.setText(chordName);
-        title.setBackgroundColor(getResources().getColor(R.color.colorSecondaryWhite));
-        title.setPadding(10, 30, 10, 30);
+        title.setBackgroundColor(getResources().getColor(R.color.colorPureWhite));
+        title.setPadding(10, 10, 10, 10);
         title.setGravity(Gravity.CENTER);
-        title.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        title.setTextColor(getResources().getColor(R.color.colorPureBlack));
         title.setTextSize(20);
 
         builder
                 .setCustomTitle(title)
-                .setView(view);
+                .setView(view)
+        ;
 
-        return builder.create();
+        Dialog dialog = builder.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Window view=((AlertDialog)dialog).getWindow();
+                view.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                view.setBackgroundDrawableResource(R.drawable.border_white);
+
+                DisplayMetrics displayMetrics = new DisplayMetrics();
+                getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+                int displayWidth = displayMetrics.widthPixels;
+                WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+                layoutParams.copyFrom(((AlertDialog) dialog).getWindow().getAttributes());
+                int dialogWindowWidth = (int) (displayWidth * 0.7f);
+                layoutParams.width = dialogWindowWidth;
+                ((AlertDialog) dialog).getWindow().setAttributes(layoutParams);
+            }
+        });
+
+        return dialog;
     }
 }

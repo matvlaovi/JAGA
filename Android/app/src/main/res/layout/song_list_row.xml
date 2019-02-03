@@ -13,7 +13,7 @@
         android:textColor="@color/colorPrimaryWhite"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="false"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="25dp"
         android:layout_marginStart="25dp"
         android:text="title"
         android:textStyle="bold"
@@ -27,7 +27,7 @@
         android:layout_below="@id/title"
         android:layout_marginStart="25dp"
         android:textColor="@color/colorPrimaryWhite"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:text="artist"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,38 +37,33 @@
         android:layout_width="10dp"
         android:layout_height="10dp"
         android:src="@drawable/guitar_pick"
-        android:tint="@color/colorPrimaryWhite"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="visible"/>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/difficulty2"
         android:layout_width="10dp"
         android:layout_height="10dp"
         android:src="@drawable/guitar_pick"
-        android:tint="@color/colorPrimaryWhite"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/difficulty1"
         android:layout_width="10dp"
+        android:tint="@color/colorPrimaryWhite"
         android:layout_height="10dp"
         android:src="@drawable/guitar_pick"
-        android:tint="@color/colorPrimaryWhite"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

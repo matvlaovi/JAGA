@@ -67,18 +67,18 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.MyView
         switch(song.getDifficulty()) {
             // Easy
             case 1:
-                holder.difficulty1.setVisibility(View.GONE);
-                holder.difficulty2.setVisibility(View.GONE);
+                holder.difficulty2.setColorFilter(context.getResources().getColor(R.color.colorSecondaryWhite));
+                holder.difficulty3.setColorFilter(context.getResources().getColor(R.color.colorSecondaryWhite));
                 break;
             // Medium
             case 2:
-                holder.difficulty1.setVisibility(View.GONE);
-                holder.difficulty2.setVisibility(View.VISIBLE);
+                holder.difficulty2.setColorFilter(context.getResources().getColor(R.color.colorPrimaryWhite));
+                holder.difficulty3.setColorFilter(context.getResources().getColor(R.color.colorSecondaryWhite));
                 break;
             // Hard
             case 3:
-                holder.difficulty1.setVisibility(View.VISIBLE);
-                holder.difficulty2.setVisibility(View.VISIBLE);
+                holder.difficulty2.setColorFilter(context.getResources().getColor(R.color.colorPrimaryWhite));
+                holder.difficulty3.setColorFilter(context.getResources().getColor(R.color.colorPrimaryWhite));
                 break;
         }
 
