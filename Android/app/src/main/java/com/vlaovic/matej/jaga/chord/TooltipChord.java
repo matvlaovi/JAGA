@@ -28,7 +28,7 @@ public class TooltipChord implements ChordView {
                 .animate(new TooltipAnimation(TooltipAnimation.FADE, 400))
                 .autoAdjust(true)
                 .content(content)
-                .withTip(new Tooltip.Tip(25, 25, context.getResources().getColor(R.color.colorAccent),5))
+                .withTip(new Tooltip.Tip(25, 25, context.getResources().getColor(R.color.colorPrimaryWhite),5))
                 .into((ViewGroup) ((Activity) context).findViewById(R.id.chordsActivityRoot))
                 .show();
 
