@@ -297,7 +297,7 @@ public class ChordsActivity extends AppCompatActivity {
                     }
 
                     try {
-                        Thread.sleep(svInterval);
+                        Thread.sleep(21 - svInterval);
                     }
                     catch (InterruptedException e) {
                         svScrolling = false;

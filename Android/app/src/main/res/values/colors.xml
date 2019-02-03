@@ -12,5 +12,10 @@
     <color name="colorWhiteBackground">#f5f5f5</color>
     <color name="colorPureWhite">#ffffff</color>
     <color name="colorRed">#e84f65</color>
+    <color name="colorGreen">#52d273</color>
+    <color name="colorYellow">#e5c453</color>
     <color name="colorLightBlue">#47bddf</color>
+    <color name="colorPureBlack">#000000</color>
+    <color name="colorMatteBlackDark">#141414</color>
+    <color name="colorMatteBlackLight">#1B1B1B</color>
 </resources>
