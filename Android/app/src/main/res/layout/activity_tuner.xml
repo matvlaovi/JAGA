@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/colorDarkBackground"
     android:layout_height="match_parent"
     tools:context=".tuner.TunerActivity">
 
@@ -18,14 +19,21 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorSecondaryWhite" />
     </android.support.design.widget.AppBarLayout>
 
     <ImageView
         android:id="@+id/guitar_head"
         android:layout_width="match_parent"
-        android:layout_height="800dp"
+        android:layout_height="700dp"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
@@ -37,7 +45,7 @@
         android:textSize="20sp"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="60dp"
         android:layout_marginStart="10dp"
         android:text="@string/tune_d"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +57,7 @@
         android:textSize="20sp"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="145dp"
         android:layout_marginStart="10dp"
         android:text="@string/tune_a"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +69,7 @@
         android:textSize="20sp"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="245dp"
+        android:layout_marginTop="230dp"
         android:layout_marginStart="10dp"
         android:text="@string/tune_e"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +81,7 @@
         android:textSize="20sp"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="10dp"
         android:text="@string/tune_g"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +93,7 @@
         android:textSize="20sp"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="145dp"
         android:layout_marginEnd="10dp"
         android:text="@string/tune_b"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +105,7 @@
         android:textSize="20sp"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="245dp"
+        android:layout_marginTop="230dp"
         android:layout_marginEnd="10dp"
         android:text="@string/tune_e"
         app:layout_constraintEnd_toEndOf="parent"

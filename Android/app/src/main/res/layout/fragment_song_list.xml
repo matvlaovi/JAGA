@@ -56,14 +56,15 @@
 
         <ImageView
             android:id="@+id/empty_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
             android:layout_centerHorizontal="true"
-            android:src="@mipmap/sad_face"
-            android:tint="@color/grayTint" />
+            android:src="@drawable/freddy_silhouette"
+            android:tint="@color/colorHintWhite" />
 
         <TextView
             android:id="@+id/empty_text"
+            android:textColor="@color/colorSecondaryWhite"
             android:text="@string/no_songs_available"
             android:layout_width="wrap_content"
             android:layout_below="@id/empty_image"

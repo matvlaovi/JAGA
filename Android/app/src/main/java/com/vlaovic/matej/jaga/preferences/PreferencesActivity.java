@@ -12,6 +12,7 @@ public class PreferencesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.ThemeOverlay_AppCompat_Dark);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferences);
 
